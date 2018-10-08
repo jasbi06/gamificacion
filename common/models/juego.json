@@ -23,5 +23,24 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "prototype.getNombre": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "nombre",
+          "type": "string",
+          "root": false,
+          "description": "El nombre del juego"
+        }
+      ],
+      "description": "Devuelve el nombre del Juego",
+      "http": [
+        {
+          "path": "/getNombre",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }
