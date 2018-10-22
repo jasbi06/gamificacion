@@ -11,5 +11,9 @@ module.exports = function(Juego) {
       // TODO
       callback(null, nombre);
     };
+    Review.beforeRemote('create', function(ctx, user, next) {
+    	context.args.data.creador = ctx.req.accessToken.userId;
+    	next();
+  });
 
 };
