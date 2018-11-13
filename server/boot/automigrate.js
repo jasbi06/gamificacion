@@ -1,13 +1,13 @@
-module.exports = function (app) {
-  if (process.env.AUTOMIGRATE === "true") {
-    app.dataSources.mysqlDs.automigrate(null, function (err) {
+module.exports = function(app) {
+  if (process.env.AUTOMIGRATE === 'true') {
+    app.dataSources.db.automigrate(null, function(err) {
       if (err) throw err;
-      console.log("Modelos creados");
+      console.log('Modelos creados');
       app.loadFixtures()
-        .then(function () {
+        .then(function() {
           insertaCoordinadores(app);
         })
-        .catch(function (err) {
+        .catch(function(err) {
           console.log('Errors:', err);
         });
     });
@@ -15,7 +15,7 @@ module.exports = function (app) {
 };
 
 function insertaCoordinadores(app) {
-  app.models.Juego.find({}, function (err, juegos) {
+  app.models.Juego.find({}, function(err, juegos) {
     let coordinadores = juegos.map((juego) => {
       console.log(juego);
       return new Promise((resolve) => {
@@ -25,6 +25,5 @@ function insertaCoordinadores(app) {
     });
 
     Promise.all(coordinadores).then(() => console.log('Datos cargados correctamente!'));
-  })
-
+  });
 }
